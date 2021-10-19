@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-
+import { FlatList, StyleSheet, View, SafeAreaView } from "react-native";
+/* components */
+import { ShopReviewItem } from "./src/components/ShopReviewItem";
+/* lib */
 import { getShops } from "./src/lib/firebase";
+/* types */
 import { Shop } from "./src/types/shop";
 
 export default function App() {
@@ -17,13 +20,21 @@ export default function App() {
   };
 
   const shopItems = shops.map((shop, index) => (
-    <View style={{ margin: 10 }} key={index.toString()}>
-      <Text>{shop.name}</Text>
-      <Text>{shop.place}</Text>
-    </View>
+    <ShopReviewItem key={index.toString()} shop={shop} />
   ));
 
-  return <View style={styles.container}>{shopItems}</View>;
+  return (
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={shops}
+        renderItem={({ item }: { item: Shop }) => (
+          <ShopReviewItem shop={item} />
+        )}
+        keyExtractor={(item, index) => index.toString()}
+        numColumns={2}
+      />
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
