@@ -1,14 +1,12 @@
-import React from 'react'
-import {NavigationContainer} from '@react-navigation/native'
-/* screen */
-import {HomeScreen} from "../screens/HomeScreen"
+import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
+/* navigator */
+import { HomeStackNavigator } from "./HomeStackNavigator";
 
 export const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <HomeScreen />
+      <HomeStackNavigator />
     </NavigationContainer>
-  )
-}
-
-
+  );
+};

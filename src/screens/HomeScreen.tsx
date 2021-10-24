@@ -1,3 +1,4 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useEffect, useState } from "react";
 import { FlatList, SafeAreaView, StyleSheet } from "react-native";
 /* components */
@@ -7,7 +8,9 @@ import { getShops } from "../lib/firebase";
 /* types */
 import { Shop } from "../types/shop";
 
-export const HomeScreen = () => {
+type Props = NativeStackScreenProps<HomeStackParamList, "Home">;
+
+export const HomeScreen = ({ navigation }: Props) => {
   const [shops, setShops] = useState<Shop[]>([]);
 
   useEffect(() => {
@@ -19,16 +22,16 @@ export const HomeScreen = () => {
     shops && setShops(shops);
   };
 
-  const shopItems = shops.map((shop, index) => (
-    <ShopReviewItem key={index.toString()} shop={shop} />
-  ));
+  const onPressShop = () => {
+    navigation.navigate("Shop");
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         data={shops}
         renderItem={({ item }: { item: Shop }) => (
-          <ShopReviewItem shop={item} />
+          <ShopReviewItem shop={item} onPress={onPressShop} />
         )}
         keyExtractor={(item, index) => index.toString()}
         numColumns={2}
