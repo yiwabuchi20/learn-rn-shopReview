@@ -2,6 +2,7 @@ import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect } from "react";
 import { SafeAreaView, StyleSheet, Text } from "react-native";
+import { ShopDetail } from "../components/ShopDetail";
 import { RootStackParamList } from "../types/navigation";
 
 type Props = {
@@ -11,13 +12,14 @@ type Props = {
 
 export const ShopScreen = ({ navigation, route }: Props) => {
   const { shop } = route.params;
-  console.log(shop);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    navigation.setOptions({title:shop.name})
+  }, [shop]);
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Shop Screen</Text>
+      <ShopDetail shop={shop} />
     </SafeAreaView>
   );
 };
