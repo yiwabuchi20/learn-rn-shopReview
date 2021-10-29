@@ -1,7 +1,8 @@
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect } from "react";
-import { SafeAreaView, StyleSheet, Text } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
+import { FloatingActionButton } from "../components/FloatingActionButton";
 import { ShopDetail } from "../components/ShopDetail";
 import { RootStackParamList } from "../types/navigation";
 
@@ -20,6 +21,9 @@ export const ShopScreen = ({ navigation, route }: Props) => {
   return (
     <SafeAreaView style={styles.container}>
       <ShopDetail shop={shop} />
+      <FloatingActionButton iconName="plus" onPress={
+        ()=>{navigation.navigate("CreateReview",{shop})}
+      }/>
     </SafeAreaView>
   );
 };
