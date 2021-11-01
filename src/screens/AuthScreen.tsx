@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   ActivityIndicator,
   SafeAreaView,
   StyleSheet,
   Text,
 } from "react-native";
+import { signin } from "../lib/firebase";
 
 export const AuthScreen: React.FC = () => {
+  useEffect(() => {
+    const fetchUser = async () => {
+      const user = await signin();
+      console.log(user);
+      
+    };
+    fetchUser();
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <ActivityIndicator size="large" />
@@ -20,7 +30,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent:"center"
+    justifyContent: "center",
   },
   text: {
     marginTop: 16,

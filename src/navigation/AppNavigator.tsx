@@ -3,6 +3,6 @@ import { AuthScreen } from "../screens/AuthScreen";
 import { MainTabNavigator } from "./MainTabNavigator";
 
 export const AppNavigator = () => {
-  const user = {id:1111};
+  const user = null;
   return <>{!user ? <AuthScreen /> : <MainTabNavigator />}</>;
 };
