@@ -1,12 +1,13 @@
-import { NavigationContainer } from "@react-navigation/native";
-import React from "react";
+import React, { useState } from "react";
+import { UserContext } from "./src/components/contexts/userContext";
 import { AppNavigator } from "./src/navigation/AppNavigator";
-import { MainTabNavigator } from "./src/navigation/MainTabNavigator";
+import { User } from "./src/types/user";
 
 export default function App() {
+  const [user, setUser] = useState<User>();
   return (
-    <NavigationContainer>
+    <UserContext.Provider value={{ user, setUser }}>
       <AppNavigator />
-    </NavigationContainer>
+    </UserContext.Provider>
   );
 }
